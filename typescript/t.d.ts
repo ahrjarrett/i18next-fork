@@ -1,10 +1,4 @@
-import type {
-  $PreservedValue,
-  $Dictionary,
-  $StringKeyPathToRecord,
-  $NoInfer,
-  $Prune,
-} from './helpers.js';
+import type { $PreservedValue, $Dictionary, $StringKeyPathToRecord, $Prune } from './helpers.js';
 import type { TypeOptions, Namespace, TOptions, TOptionsBase } from './options.js';
 
 /** @todo consider to replace {} with Record<string, never> */
@@ -157,9 +151,9 @@ interface TFunction<Ns extends Namespace, KPrefix, Source> extends Branded<Ns> {
   >(
     selector: ($: FilterKeys<SourceOverride, Opts['context']>) => ApplyTarget<Target, Opts>,
     options: Opts & InterpolationMap<Target> & { ns: NsOverride },
-  ): ReturnOptionalDetails<ProcessReturnValue<$NoInfer<Target>, Opts['defaultValue']>, Opts>;
+  ): ReturnOptionalDetails<ProcessReturnValue<Target, Opts['defaultValue']>, Opts>;
   <Target extends ConstrainTarget<Opts>, const Opts extends Options>(
     selector: ($: FilterKeys<Source, Opts['context']>) => ApplyTarget<Target, Opts>,
     options?: Opts & InterpolationMap<Target>,
-  ): ReturnOptionalDetails<ProcessReturnValue<$NoInfer<Target>, Opts['defaultValue']>, Opts>;
+  ): ReturnOptionalDetails<ProcessReturnValue<Target, Opts['defaultValue']>, Opts>;
 }
